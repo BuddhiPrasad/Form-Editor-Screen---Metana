@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight } from "lucide-react";
 import { WelcomeSettings, EmailSettings, SettingsType } from "@/types";
-import Image from "next/image";
 
 interface PreviewProps {
   welcomeSettings: WelcomeSettings;

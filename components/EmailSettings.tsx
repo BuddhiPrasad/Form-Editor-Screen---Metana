@@ -23,13 +23,7 @@ export default function EmailSettings({
       <h3 className="font-semibold mb-2">Email Settings</h3>
       <div>
         <Label htmlFor="emailTitle">Title</Label>
-        <Input
-          id="emailTitle"
-          value={settings.title}
-          onChange={(e) =>
-            setSettings((prev) => ({ ...prev, title: e.target.value }))
-          }
-        />
+        <Input id="emailTitle" value={settings.title} />
       </div>
       <div>
         <Label htmlFor="emailDescription">Description</Label>
