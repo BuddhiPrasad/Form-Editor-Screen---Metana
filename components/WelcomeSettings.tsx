@@ -89,6 +89,15 @@ export default function WelcomeSettings({
             {settings.image ? "Remove Image" : "Upload Image"}
           </Button>
         </div>
+        {settings.image && (
+          <div className="mt-4">
+            <img
+              src={settings.image}
+              alt="Uploaded preview"
+              className="w-full h-32 object-cover rounded-lg"
+            />
+          </div>
+        )}
       </div>
       <div>
         <Label>Placement</Label>

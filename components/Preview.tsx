@@ -7,13 +7,38 @@ interface PreviewProps {
   welcomeSettings: WelcomeSettings;
   emailSettings: EmailSettings;
   activeSettings: SettingsType;
+  email: string;
+  setEmail: React.Dispatch<React.SetStateAction<string>>;
+  emailError: string;
+  setEmailError: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Preview({
   welcomeSettings,
   emailSettings,
   activeSettings,
+  email,
+  setEmail,
+  emailError,
+  setEmailError,
 }: PreviewProps) {
+  const validateEmail = (email: string) => {
+    const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return re.test(String(email).toLowerCase());
+  };
+
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (emailSettings.required && !email) {
+      setEmailError("Email is required");
+    } else if (email && !validateEmail(email)) {
+      setEmailError("Please enter a valid email address");
+    } else {
+      setEmailError("");
+      console.log("Email submitted:", email);
+    }
+  };
+
   const renderPreview = () => {
     switch (activeSettings) {
       case "welcome":
@@ -64,19 +89,27 @@ export default function Preview({
           <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden p-8">
             <h2 className="text-3xl font-bold mb-4">{emailSettings.title}</h2>
             <p className="text-gray-600 mb-6">{emailSettings.description}</p>
-            <div className="flex items-center space-x-2">
-              <Input
-                type="email"
-                placeholder="Type here..."
-                className="flex-grow"
-              />
-              <Button
-                type="submit"
-                className="bg-black text-white hover:bg-gray-800"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </Button>
-            </div>
+            <form onSubmit={handleEmailSubmit} className="space-y-4">
+              <div className="flex items-center space-x-2">
+                <Input
+                  type="email"
+                  placeholder="Type here..."
+                  className="flex-grow"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required={emailSettings.required}
+                />
+                <Button
+                  type="submit"
+                  className="bg-black text-white hover:bg-gray-800"
+                >
+                  <ArrowRight className="h-4 w-4" />
+                </Button>
+              </div>
+              {emailError && (
+                <p className="text-red-500 text-sm">{emailError}</p>
+              )}
+            </form>
           </div>
         );
       default:
@@ -89,10 +122,14 @@ export default function Preview({
   };
 
   return (
-    <div className="flex-1 bg-white p-8 flex flex-col justify-center items-center overflow-hidden">
-      {renderPreview()}
-      <div className="mt-4 text-center text-sm text-gray-500">
-        Powered by <span className="font-bold">Buildform</span>
+    <div className="flex-1 bg-gray-100 overflow-hidden">
+      <div className="h-full w-full flex items-center justify-center p-8">
+        <div className="w-full max-w-5xl">
+          {renderPreview()}
+          <div className="mt-4 text-center text-sm text-gray-500">
+            Powered by <span className="font-bold">Buildform</span>
+          </div>
+        </div>
       </div>
     </div>
   );

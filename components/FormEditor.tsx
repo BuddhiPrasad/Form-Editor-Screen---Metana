@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SettingsPanel from "./SettingsPanel";
 import Preview from "./Preview";
-import { WelcomeSettings, EmailSettings, SettingsType } from "@/types";
+import { WelcomeSettings, EmailSettings, SettingsType, Step } from "../types";
 
 export default function FormEditor() {
   const [welcomeSettings, setWelcomeSettings] = useState<WelcomeSettings>({
@@ -21,6 +21,14 @@ export default function FormEditor() {
   });
 
   const [activeSettings, setActiveSettings] = useState<SettingsType>(null);
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+  const [steps, setSteps] = useState<Step[]>([
+    "Welcome screen",
+    "Contact No",
+    "Enter Your Email",
+    "End screen",
+  ]);
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -31,11 +39,17 @@ export default function FormEditor() {
         setEmailSettings={setEmailSettings}
         activeSettings={activeSettings}
         setActiveSettings={setActiveSettings}
+        steps={steps}
+        setSteps={setSteps}
       />
       <Preview
         welcomeSettings={welcomeSettings}
         emailSettings={emailSettings}
         activeSettings={activeSettings}
+        email={email}
+        setEmail={setEmail}
+        emailError={emailError}
+        setEmailError={setEmailError}
       />
     </div>
   );

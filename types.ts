@@ -1,5 +1,12 @@
 export type SettingsType = "welcome" | "email" | null;
 
+export type Step =
+  | "Welcome screen"
+  | "Contact No"
+  | "Enter Your Email"
+  | "End screen"
+  | string;
+
 export interface WelcomeSettings {
   title: string;
   description: string;
