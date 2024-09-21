@@ -43,7 +43,7 @@ export default function Preview({
     switch (activeSettings) {
       case "welcome":
         return (
-          <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden">
+          <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
             <div className="flex flex-col md:flex-row h-full">
               <div
                 className={`md:w-1/2 p-8 flex flex-col justify-center ${
@@ -86,30 +86,32 @@ export default function Preview({
         );
       case "email":
         return (
-          <div className="w-full max-w-5xl bg-white rounded-lg shadow-lg overflow-hidden p-8">
-            <h2 className="text-3xl font-bold mb-4">{emailSettings.title}</h2>
-            <p className="text-gray-600 mb-6">{emailSettings.description}</p>
-            <form onSubmit={handleEmailSubmit} className="space-y-4">
-              <div className="flex items-center space-x-2">
-                <Input
-                  type="email"
-                  placeholder="Type here..."
-                  className="flex-grow"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required={emailSettings.required}
-                />
-                <Button
-                  type="submit"
-                  className="bg-black text-white hover:bg-gray-800"
-                >
-                  <ArrowRight className="h-4 w-4" />
-                </Button>
+          <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden p-8">
+            <div className="h-full flex flex-col items-center justify-center">
+              <div className="w-full pr-[400px] pl-[400px]">
+                <h2 className="text-3xl font-bold mb-4">
+                  {emailSettings.title}
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  {emailSettings.description}
+                </p>
+                <form onSubmit={handleEmailSubmit} className="space-y-4">
+                  <div className="flex items-center space-x-2">
+                    <Input
+                      type="email"
+                      placeholder="Type here..."
+                      className="flex-grow"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required={emailSettings.required}
+                    />
+                  </div>
+                  {emailError && (
+                    <p className="text-red-500 text-sm">{emailError}</p>
+                  )}
+                </form>
               </div>
-              {emailError && (
-                <p className="text-red-500 text-sm">{emailError}</p>
-              )}
-            </form>
+            </div>
           </div>
         );
       default:
@@ -124,11 +126,8 @@ export default function Preview({
   return (
     <div className="flex-1 bg-gray-100 overflow-hidden">
       <div className="h-full w-full flex items-center justify-center p-8">
-        <div className="w-full max-w-5xl">
+        <div className="w-full h-full flex items-center justify-center">
           {renderPreview()}
-          <div className="mt-4 text-center text-sm text-gray-500">
-            Powered by <span className="font-bold">Buildform</span>
-          </div>
         </div>
       </div>
     </div>

@@ -3,7 +3,6 @@ import { X, Settings, Mail, Trash } from "lucide-react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import WelcomeSettings from "./WelcomeSettings";
 import EmailSettings from "./EmailSettings";
-import StepsList from "./StepsList";
 import {
   WelcomeSettings as WelcomeSettingsType,
   EmailSettings as EmailSettingsType,
@@ -29,8 +28,6 @@ export default function SettingsPanel({
   setEmailSettings,
   activeSettings,
   setActiveSettings,
-  steps,
-  setSteps,
 }: SettingsPanelProps) {
   const renderSettingsPanel = () => {
     switch (activeSettings) {
@@ -54,10 +51,10 @@ export default function SettingsPanel({
   };
 
   return (
-    <div className="w-1/3 bg-white shadow-md overflow-y-auto flex flex-col">
+    <div className="w-1/5 bg-white shadow-md overflow-y-auto flex flex-col">
       <div className="p-4 flex-1">
         <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">Settings</h2>
+          <h2 className="text-xl font-bold">Form Builder</h2>
           {activeSettings && (
             <Button
               variant="ghost"
@@ -68,17 +65,25 @@ export default function SettingsPanel({
             </Button>
           )}
         </div>
-        <Tabs defaultValue="1" className="mb-4">
-          <TabsList>
-            <TabsTrigger value="1">1</TabsTrigger>
-            <TabsTrigger value="2">2</TabsTrigger>
-            <TabsTrigger value="3">3</TabsTrigger>
-            <TabsTrigger value="4">4</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <div className="p-2 border-t flex justify-between" />
+
         <div className="space-y-4">
           {activeSettings === null ? (
             <>
+              <Tabs defaultValue="1" className="mb-4">
+                <TabsList>
+                  <TabsTrigger value="1">Content</TabsTrigger>
+                  <TabsTrigger value="2">Design</TabsTrigger>
+                  <TabsTrigger value="3">Share</TabsTrigger>
+                  <TabsTrigger value="4">Replies</TabsTrigger>
+                </TabsList>
+              </Tabs>
+              <div>
+                <h3 className="font-semibold mb-2">Steps</h3>
+                <p className="text-sm text-gray-500 mb-2">
+                  The steps users will take to complete the form
+                </p>
+              </div>
               <Button
                 variant="outline"
                 size="lg"
@@ -101,7 +106,6 @@ export default function SettingsPanel({
           ) : (
             renderSettingsPanel()
           )}
-          <StepsList steps={steps} setSteps={setSteps} />
         </div>
       </div>
       <div className="p-4 border-t flex justify-between">

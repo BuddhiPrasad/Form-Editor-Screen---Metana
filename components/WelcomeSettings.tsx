@@ -36,6 +36,8 @@ export default function WelcomeSettings({
 
   return (
     <div className="space-y-4">
+      <h3 className="font-semibold mb-2">Welcome Settings</h3>
+
       <div>
         <Label htmlFor="title">Title</Label>
         <Input
