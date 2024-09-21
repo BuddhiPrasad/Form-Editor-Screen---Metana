@@ -2,7 +2,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { EmailSettings } from "@/types";
+
+interface EmailSettings {
+  title: string;
+  description: string;
+  required: boolean;
+}
 
 interface EmailSettingsProps {
   settings: EmailSettings;
