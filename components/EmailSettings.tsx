@@ -16,7 +16,6 @@ export default function EmailSettings({
   return (
     <div className="space-y-4">
       <h3 className="font-semibold mb-2">Email Settings</h3>
-
       <div>
         <Label htmlFor="emailTitle">Title</Label>
         <Input
