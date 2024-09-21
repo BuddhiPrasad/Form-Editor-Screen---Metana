@@ -9,14 +9,14 @@ export default function FormEditor() {
   const [welcomeSettings, setWelcomeSettings] = useState<WelcomeSettings>({
     title: "Welcome to our form",
     description: "This is a description of the form",
-    buttonText: "Let's Get Started",
+    buttonText: "Start",
     image: null,
     placement: "right",
   });
 
   const [emailSettings, setEmailSettings] = useState<EmailSettings>({
     title: "Enter Your Email",
-    description: "Add your Email",
+    description: "Pease enter your valid email address",
     required: false,
   });
 

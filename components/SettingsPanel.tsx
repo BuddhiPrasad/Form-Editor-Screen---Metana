@@ -91,7 +91,7 @@ export default function SettingsPanel({
                 className="w-full flex items-center justify-start space-x-2"
               >
                 <Settings className="h-4 w-4" />
-                <span>Welcome Settings</span>
+                <span>Welcome</span>
               </Button>
               <Button
                 variant="outline"
@@ -100,7 +100,7 @@ export default function SettingsPanel({
                 className="w-full flex items-center justify-start space-x-2"
               >
                 <Mail className="h-4 w-4" />
-                <span>Email Settings</span>
+                <span>Email</span>
               </Button>
             </>
           ) : (

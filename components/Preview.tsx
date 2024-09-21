@@ -44,7 +44,7 @@ export default function Preview({
       case "welcome":
         return (
           <div className="w-full h-full bg-white rounded-lg shadow-lg overflow-hidden">
-            <div className="flex flex-col md:flex-row h-full">
+            <div className="flex flex-col md:flex-row h-full pr-[200px] pl-[200px]">
               <div
                 className={`md:w-1/2 p-8 flex flex-col justify-center ${
                   welcomeSettings.placement === "right"
@@ -58,27 +58,28 @@ export default function Preview({
                 <p className="text-gray-600 mb-6">
                   {welcomeSettings.description}
                 </p>
-                <div>
+                <div className="flex space-x-8">
                   <Button className="bg-black text-white hover:bg-gray-800">
                     {welcomeSettings.buttonText}
-                    <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                   <p className="text-sm text-gray-500 mt-2">press Enter ↵</p>
                 </div>
               </div>
               {welcomeSettings.image && (
-                <div
-                  className={`md:w-1/2 ${
-                    welcomeSettings.placement === "right"
-                      ? "order-last"
-                      : "order-first"
-                  }`}
-                >
-                  <img
-                    src={welcomeSettings.image}
-                    alt="Form background"
-                    className="w-full h-full object-cover"
-                  />
+                <div className="flex items-center justify-around w-full">
+                  <div
+                    className={` ${
+                      welcomeSettings.placement === "right"
+                        ? "order-last"
+                        : "order-first"
+                    }`}
+                  >
+                    <img
+                      src={welcomeSettings.image}
+                      alt="Form background"
+                      className="w-full h-full rounded-3xl object-cover"
+                    />
+                  </div>
                 </div>
               )}
             </div>
